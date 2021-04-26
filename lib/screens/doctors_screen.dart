@@ -256,10 +256,10 @@ class _DoctorScreenState extends State<DoctorScreen> {
                     }, ),
                 ListTile(
                   onTap: () {
-                      Navigator.of(context).pop();
+                    Navigator.pushNamed(context, '/ninth');
                     },
                   leading: Icon(Icons.settings),
-                  title: Text('Session History'),
+                  title: Text('Personal Session History'),
                 ),
 
               ],

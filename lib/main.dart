@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_application/screens/sessions_history.dart';
 import 'package:medical_application/screens/welcome_screen.dart';
 import 'package:medical_application/screens/login_screen.dart';
 import 'package:medical_application/screens/registration_screen.dart';
@@ -28,6 +29,8 @@ class MedicalApp extends StatelessWidget {
         '/sixth': (context) => DoctorPage(),
         '/seventh': (context) => UpcomingAppointments(),
         '/eighth': (context) => ProfileForm(),
+        '/ninth': (context) => SessionHistory(),
+
 
 
 
