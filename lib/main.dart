@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medical_application/screens/sessions_history.dart';
 import 'package:medical_application/screens/welcome_screen.dart';
 import 'package:medical_application/screens/login_screen.dart';
 import 'package:medical_application/screens/registration_screen.dart';
@@ -7,7 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:medical_application/screens/doctors_screen.dart';
 import 'package:medical_application/screens/chosen_doctor_page.dart';
 import 'package:medical_application/screens/upcoming_appointments.dart';
-import 'package:medical_application/screens/profile_form.dart';
+import 'package:medical_application/screens/application_form.dart';
+import 'package:medical_application/screens/session_history.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,8 @@ class MedicalApp extends StatelessWidget {
         '/sixth': (context) => DoctorPage(),
         '/seventh': (context) => UpcomingAppointments(),
         '/eighth': (context) => ProfileForm(),
-        '/ninth': (context) => SessionHistory(),
+        '/tenth': (context) => HomePage(),
+
 
 
 

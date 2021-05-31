@@ -19,6 +19,7 @@ dependencies:
   syncfusion_flutter_calendar: ^19.1.57
   flutter_form_builder: ^6.0.0
   grouped_buttons: ^1.0.4
+  material_floating_search_bar: ^0.3.4
 
 
 
