@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:medical_application/Components/tile_one.dart';
 import 'package:medical_application/Data/doctors_homepage_data.dart';
+import 'package:medical_application/Components/search_widget.dart';
 
 class DoctorScreen extends StatefulWidget {
   @override
@@ -10,20 +10,32 @@ class DoctorScreen extends StatefulWidget {
 
 class _DoctorScreenState extends State<DoctorScreen> {
 
+  String query = '';
+  List doctorData;
+  List itemsList = ['Rating', 'Experience', 'Speciality','Price','Address'];
+  String selectedCategory;
+
+  @override
+  void initState() {
+    super.initState();
+    doctorData = lists;
+  }
+
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  void _openDrawer() {
+  void openDrawer() {
     _scaffoldKey.currentState.openDrawer();
   }
-  void _closeDrawer() {
+  void closeDrawer() {
     Navigator.of(context).pop();
   }
 
   List doctorsList = lists;
   bool isSearching = false;
   String userInput;
+
   @override
   Widget build(BuildContext context) {
-    var color2 = Color(0xDDf7f5fb);
 
     return SafeArea(
       child: Scaffold(
@@ -42,62 +54,86 @@ class _DoctorScreenState extends State<DoctorScreen> {
                 onPressed: () => Scaffold.of(context).openDrawer(),
               ),
             ),
-          toolbarHeight: 50,
+          toolbarHeight: 40,
           leadingWidth: 70,
 
           actions: [
-
             Padding(
               padding: const EdgeInsets.only(right: 18.0),
-              child: Icon(
+              child: DropdownButton(
+                underline: SizedBox(),
+                elevation: 0,
+                dropdownColor: Colors.blueGrey,
+                icon: Icon(
                 Icons.filter_list,
                 color: Colors.black,
+              ),
+                items: itemsList.map((items){
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Center(child: Text(items, style: TextStyle(color: Colors.white),)),);
+              }).toList(),
+                onChanged: (value){
+                  setState(() {
+                    selectedCategory = value;
+                  });
+                },
+                value: selectedCategory,
+
+
               ),
             ),
 
           ],
         ),
-            body: SingleChildScrollView(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.0),
-                      topRight: Radius.circular(25.0)),
-                  color: Colors.white,
-                ),
-                width: double.infinity,
-                child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, top: 25.0, bottom: 5.0),
-                        child:
-                        Text('All doctors', style: TextStyle(fontSize: 10.0)),
+            body: Column(
+              children: [
+                buildSearch(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25.0),
+                            topRight: Radius.circular(25.0)),
+                        color: Colors.white,
                       ),
-                      SizedBox(height: 10),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: lists
-                            .map((v) => TileOne(
-                          index: v['index'],
-                          title: v['title'],
-                          subtitle: v['subtitle'],
-                          image: v['image'],
-                          price: v['Price'],
-                          rating: v['rating'],
-                          experience: v['experience'],
-                          address: v['address'],
-                        ))
-                            .toList(),
+                      width: double.infinity,
+                      child: Container(
+                        padding: EdgeInsets.all(5.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, top: 25.0, bottom: 5.0),
+                              child:
+                              Text('All doctors', style: TextStyle(fontSize: 10.0)),
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: lists
+                                  .map((v) => TileOne(
+                                index: v['index'],
+                                title: v['title'],
+                                subtitle: v['subtitle'],
+                                image: v['image'],
+                                price: v['Price'],
+                                rating: v['rating'],
+                                experience: v['experience'],
+                                address: v['address'],
+                              ))
+                                  .toList(),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
 
 
@@ -149,6 +185,34 @@ class _DoctorScreenState extends State<DoctorScreen> {
       ),
     );
   }
+
+
+  Widget buildSearch() => SearchWidget(
+    text: query,
+    hintText: 'Doctor or Speciality name',
+    onChanged: searchForDoctor,
+  );
+  void searchForDoctor(String query) {
+    final searchList = doctorData.where((card) {
+      final titleLower = card['title'].toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return titleLower.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      this.query = query;
+      this.doctorData = searchList;
+    });
+  }
+/*
+  void sortFilteredDoctors(){
+    final news= doctorsList.sort((a, b) => a['rating'].compareTo(b['rating']));
+    setState(() {
+      this.doctorData =news;
+    });
+  }
+ */
 }
 
 
