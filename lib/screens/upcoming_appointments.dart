@@ -12,14 +12,14 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueGrey.shade800,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.black26,
+              color: Colors.white70,
               size: 20,
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -27,8 +27,9 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
 
           title: Text('Calender',
             style: TextStyle(
-              color: Colors.black54,
-              fontSize: 15,
+              color: Colors.white70,
+              fontFamily: 'AmaticSC',
+              fontSize: 18,
             ),
           ),),
 
@@ -39,7 +40,7 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
                   padding: const EdgeInsets.all(12.0),
                   child: SfCalendar(
                     view:CalendarView.week,
-                    backgroundColor: Colors.blueGrey.shade500,
+                    backgroundColor: Colors.blueGrey.shade600,
                     dataSource: MeetingDataSource(getDataSource()),
                     monthViewSettings: MonthViewSettings(
                         appointmentDisplayMode: MonthAppointmentDisplayMode
@@ -59,7 +60,7 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
     DateTime(today.year, today.month, today.day, 9, 0, 0);
     final DateTime endTime = startTime.add(const Duration(hours: 2));
     meetings.add(Appointment(
-        subject: 'Conference', startTime: startTime ,endTime: endTime , color: Colors.black));
+        subject: 'Conference', startTime: startTime ,endTime: endTime , color: Colors.blueGrey.shade800));
     return meetings;
 
 }
