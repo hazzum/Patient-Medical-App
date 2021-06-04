@@ -15,7 +15,7 @@ class ProfileForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.black54,
+          backgroundColor: Colors.blueGrey.shade800,
           body: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(15, 25, 15, 10),
             child: Form(
@@ -26,9 +26,9 @@ class ProfileForm extends StatelessWidget {
                   Text(
                     'Patient General Medical History',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white70,
+                      color: Colors.white,
                     ),
                   ),
                   FormBuilderTextField(
@@ -78,9 +78,9 @@ class ProfileForm extends StatelessWidget {
                   Text(
                     'Emergency Contacts',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white70,
+                      color: Colors.white,
                     ),
                   ),
                   FormBuilderTextField(
@@ -127,7 +127,7 @@ class ProfileForm extends StatelessWidget {
 
                   Text("Have you suffered from any of the following?",
                     style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0
                     ),
@@ -135,7 +135,7 @@ class ProfileForm extends StatelessWidget {
                   SizedBox(height: 10,),
                   CheckboxGroup(
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white70,
                     ),
                     labels: <String>[
                       "Penicillin",
@@ -148,7 +148,7 @@ class ProfileForm extends StatelessWidget {
                       "Codeine",
                       "Metal",
                     ],
-
+                    activeColor: Colors.black54,
                     onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked  "
                         " label: $label  index: $index"),
                     onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
@@ -159,7 +159,7 @@ class ProfileForm extends StatelessWidget {
 
                   Text("Are you allergic to any of the following?",
                     style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0
                     ),
@@ -167,7 +167,7 @@ class ProfileForm extends StatelessWidget {
                   SizedBox(height: 10,),
                   CheckboxGroup(
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white70,
                     ),
                     labels: <String>[
                       "HIV/AIDS",
@@ -189,7 +189,7 @@ class ProfileForm extends StatelessWidget {
                       "Diabetes",
                       "Cold sores/Fever blisters"
                     ],
-
+                    activeColor: Colors.black54,
                     onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked  "
                         " label: $label  index: $index"),
                     onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
@@ -201,7 +201,7 @@ class ProfileForm extends StatelessWidget {
 
                   Text("If you are a WOMAN, are you:",
                     style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0
                     ),
@@ -209,14 +209,14 @@ class ProfileForm extends StatelessWidget {
                   SizedBox(height: 10,),
                   CheckboxGroup(
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white70,
                     ),
                     labels: <String>[
                       'Pregnant/trying to get?',
                       'Taking Oral contraceptives?',
                       'Nursing?',
                     ],
-
+                    activeColor: Colors.black54,
                     onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked  "
                         " label: $label  index: $index"),
                     onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
@@ -230,23 +230,30 @@ class ProfileForm extends StatelessWidget {
 
                   Text("Familial Diseases",
                     style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 17.0
+                        fontSize: 20.0
                     ),
                   ),
                   SizedBox(height: 10,),
-                  Text("Have you or your blood relatives have had any of the following?"
-                      + "    " + "Check those where the answer is YES",
+                  Text("Have you or your blood relatives have had any of the following?",
                     style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0
+                        color: Colors.white,
+                        fontSize: 15.0
                     ),
                   ),
+                  SizedBox(height: 10,),
+                  Text("Check those where the answer is YES",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0
+                    ),
+                  ),
+                  SizedBox(height: 10,),
                   CheckboxGroup(
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white70,
                     ),
                     labels: <String>[
                       'Heart Attack, age < 50',
@@ -260,7 +267,7 @@ class ProfileForm extends StatelessWidget {
                       'Asthma/hay fever',
                       "Obesity",
                     ],
-
+                    activeColor: Colors.black54,
                     onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked  "
                         " label: $label  index: $index"),
                     onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
@@ -274,20 +281,20 @@ class ProfileForm extends StatelessWidget {
 
                   Text("Smoking and Alcoholic drinks, Do you:",
                     style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0
                     ),
                   ),
                   CheckboxGroup(
                     labelStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.white70,
                     ),
                     labels: <String>[
                       "Smoke Cigarettes?",
                       "Drink Alcohol",
                     ],
-
+                    activeColor: Colors.black54,
                     onChange: (bool isChecked, String label, int index) => print("isChecked: $isChecked  "
                         " label: $label  index: $index"),
                     onSelected: (List<String> checked) => print("checked: ${checked.toString()}"),
@@ -379,6 +386,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Flexible(
           fit: FlexFit.loose,
           child: RadioListTile<Gender>(
+            activeColor: Colors.black54,
             title: const Text('Male',
             style: TextStyle(
               fontSize: 13,
@@ -396,6 +404,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         Flexible(
           fit: FlexFit.loose,
           child: RadioListTile<Gender>(
+            activeColor: Colors.black54,
             title: const Text('Female',
               style: TextStyle(
                 fontSize: 13,

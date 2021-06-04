@@ -39,7 +39,8 @@ class MedicalApp extends StatelessWidget {
       },
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          bodyText2: TextStyle(color: Colors.black54),
+          bodyText1: TextStyle(fontFamily: 'AmaticSC'),
+          bodyText2: TextStyle(color: Colors.black54, fontFamily: 'AmaticSC',),
         ),
       ),
 

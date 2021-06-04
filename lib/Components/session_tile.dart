@@ -7,9 +7,9 @@ class SessionTile extends StatelessWidget {
 
   final String subtitle;
 
-  final String date;
+  final DateTime date;
 
-  final String time;
+  final DateTime time;
 
   final String index;
 
@@ -77,36 +77,7 @@ class SessionTile extends StatelessWidget {
                           style: TextStyle(color: Colors.grey.shade600)),
                     ),
                     SizedBox(height: 5,),
-                    Material(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.place,
-                            size: 13,
-                            color: Colors.black54,),
-                          Text(address,
-                              style: TextStyle(color: Colors.blueGrey.shade500,
-                                fontSize: 13,)),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 5,),
-                    Material(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          Text('$price',
-                              style: TextStyle(color: Colors.black54,
-                                fontSize: 11,
-                              )),
-                          SizedBox(width: 3,),
-                          Text('Egyptian Pounds',
-                            style: TextStyle(color: Colors.black54,
-                              fontSize: 10,),),
-                        ],
-                      ),
-                    ),
+
                   ],
                 ),
               ),
@@ -119,7 +90,7 @@ class SessionTile extends StatelessWidget {
                     color: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: Text(date ,
+                      child: Text((date.day).toString() + '/' + (date.month).toString() + '/' + (date.year).toString() ,
                           style: TextStyle(
                               color: Colors.grey.shade600, fontSize: 12.0)),
                     ),
@@ -128,7 +99,7 @@ class SessionTile extends StatelessWidget {
                     color: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: Text(time,
+                      child: Text((time.hour).toString() + ':' + (date.minute).toString(),
                           style: TextStyle(
                               color: Colors.grey.shade600, fontSize: 12.0)),
                     ),

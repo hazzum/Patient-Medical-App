@@ -17,6 +17,9 @@ class _HomePageState extends State<HomePage> {
   String userInput;
   String query = '';
   List doctorData;
+  List doctorsList = lists;
+  List itemsList = ['Speciality', 'DateTime'];
+  String selectedCategory;
 
   @override
   void initState() {
@@ -39,12 +42,30 @@ class _HomePageState extends State<HomePage> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 18.0),
-              child: Icon(
-                Icons.filter_list,
-                color: Colors.black,
+              child: DropdownButton(
+                underline: Container(),
+                elevation: 0,
+                dropdownColor: Colors.blueGrey,
+                icon: Icon(
+                  Icons.sort,
+                  color: Colors.black,
+                ),
+                items: itemsList.map((items){
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Center(child: Text(items, style: TextStyle(color: Colors.white),)),);
+                }).toList(),
+                onChanged: (value){
+                  setState(() {
+                    selectedCategory = value;
+                    sortFilteredDoctors(value);
+                  });
+                },
+                value: selectedCategory,
+
+
               ),
             ),
-
           ],
         ),
         body: Column(
@@ -81,10 +102,8 @@ class _HomePageState extends State<HomePage> {
                             title: v['title'],
                             subtitle: v['subtitle'],
                             image: v['image'],
-                            price: v['Price'],
-                            time: v['Time'],
-                            date: v['Date'],
-                            address: v['address'],
+                            time: v['DateTime'],
+                            date: v['DateTime'],
                           ))
                               .toList(),
                         ),
@@ -107,7 +126,7 @@ class _HomePageState extends State<HomePage> {
     onChanged: searchForDoctor,
   );
   void searchForDoctor(String query) {
-    final searchList = doctorData.where((card) {
+    final searchList = doctorsList.where((card) {
       final titleLower = card['title'].toLowerCase();
       final searchLower = query.toLowerCase();
 
@@ -117,6 +136,18 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       this.query = query;
       this.doctorData = searchList;
+    });
+  }
+
+  void  sortFilteredDoctors(String value){
+    if (value == 'DateTime')
+      doctorData.sort((a, b) => b['DateTime'].compareTo(a['DateTime']));
+    else if (value == 'Speciality')
+      doctorData.sort((a, b) => b['subtitle'].compareTo(a['subtitle']));
+
+
+    setState(() {
+      this.doctorData = doctorData;
     });
   }
 }

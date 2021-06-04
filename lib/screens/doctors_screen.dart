@@ -61,11 +61,11 @@ class _DoctorScreenState extends State<DoctorScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 18.0),
               child: DropdownButton(
-                underline: SizedBox(),
+                underline: Container(),
                 elevation: 0,
                 dropdownColor: Colors.blueGrey,
                 icon: Icon(
-                Icons.filter_list,
+                Icons.sort,
                 color: Colors.black,
               ),
                 items: itemsList.map((items){
@@ -76,6 +76,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
                 onChanged: (value){
                   setState(() {
                     selectedCategory = value;
+                    sortFilteredDoctors(value);
                   });
                 },
                 value: selectedCategory,
@@ -114,7 +115,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: lists
+                              children: doctorData
                                   .map((v) => TileOne(
                                 index: v['index'],
                                 title: v['title'],
@@ -193,7 +194,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
     onChanged: searchForDoctor,
   );
   void searchForDoctor(String query) {
-    final searchList = doctorData.where((card) {
+    final searchList = doctorsList.where((card) {
       final titleLower = card['title'].toLowerCase();
       final searchLower = query.toLowerCase();
 
@@ -205,14 +206,23 @@ class _DoctorScreenState extends State<DoctorScreen> {
       this.doctorData = searchList;
     });
   }
-/*
-  void sortFilteredDoctors(){
-    final news= doctorsList.sort((a, b) => a['rating'].compareTo(b['rating']));
+
+  void  sortFilteredDoctors(String value){
+    if (value == 'Rating')
+      doctorData.sort((a, b) => b['rating'].compareTo(a['rating']));
+    else if (value == 'Experience')
+      doctorData.sort((a, b) => b['experience'].compareTo(a['experience']));
+    else if (value == 'Speciality')
+      doctorData.sort((a, b) => b['subtitle'].compareTo(a['subtitle']));
+    else if (value == 'Address')
+      doctorData.sort((a, b) => a['address'].compareTo(b['address']));
+    else if (value == 'Price')
+      doctorData.sort((a, b) => a['Price'].compareTo(b['Price']));
+
     setState(() {
-      this.doctorData =news;
+      this.doctorData = doctorData;
     });
   }
- */
 }
 
 

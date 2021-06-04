@@ -8,8 +8,8 @@ var lists = [
     'experience': '2',
     'subtitle': 'Physician',
     'address' : 'Luxur',
-    'Date': '15/7/2021',
-    'Time': '6 pm'
+    'DateTime': DateTime.utc(2019, 6, 4, 18, 0),
+
   },
   {
     'index': '2',
@@ -20,8 +20,7 @@ var lists = [
     'experience': '3',
     'subtitle': 'Physician',
     'address' : 'Alexandria',
-    'Date': '21/6/2021',
-    'Time': '7 pm'
+    'DateTime': DateTime.utc(2012, 5, 2, 15, 30),
   },
   {
     'index': '3',
@@ -32,8 +31,8 @@ var lists = [
     'experience': '3',
     'subtitle': 'Neurologist',
     'address' : 'Giza',
-    'Date': '7/12/2020',
-    'Time': '12 pm'
+    'DateTime': DateTime.utc(2020, 9, 6, 1, 30),
+
   },
   {
     'index': '4',
@@ -44,8 +43,8 @@ var lists = [
     'Price':250,
     'subtitle': 'Neurologist',
     'address' : 'Menufia',
-    'Date': '1/5/2021',
-    'Time': '12:30 pm'
+    'DateTime': DateTime.utc(2021, 6, 5, 5, 0),
+
   },
   {
     'index': '5',
@@ -56,8 +55,8 @@ var lists = [
     'Price':400,
     'subtitle': 'Oncologist',
     'address' : 'Cairo',
-    'Date': '1/8/2021',
-    'Time': '9:45 pm'
+    'DateTime': DateTime.utc(2014, 5, 2, 6, 30),
+
   },
   {
     'index': '6',
@@ -68,8 +67,8 @@ var lists = [
     'experience': '2',
     'subtitle': 'Physician',
     'address' : 'Aswan',
-    'Date': '3/9/2020',
-    'Time': '1:30 pm'
+    'DateTime': DateTime.utc(2020, 11, 2, 9, 0),
+
   },
   {
     'index': '7',
@@ -80,8 +79,8 @@ var lists = [
     'experience': '3',
     'subtitle': 'Physician',
     'address' : 'Red Sea',
-    'Date': '14/7/2021',
-    'Time': '5 pm'
+    'DateTime': DateTime.utc(2019, 8, 28, 23, 30),
+
   },
   {
     'index': '8',
@@ -92,8 +91,7 @@ var lists = [
     'Price':150,
     'subtitle': 'Pediatrician',
     'address' : 'Qaliuobia',
-    'Date': '1/4/2021',
-    'Time': '9 pm'
+    'DateTime': DateTime.utc(2014, 5, 2, 7, 30),
   },
   {
     'index': '9',
@@ -104,8 +102,8 @@ var lists = [
     'subtitle': 'Pediatrician',
     'address' : 'Cairo',
     'Price':100,
-    'Date': '31/3/2021',
-    'Time': '7 pm'
+    'DateTime': DateTime.utc(2014, 5, 2, 7, 0),
+
   },
   {
     'index': '0',
@@ -116,7 +114,7 @@ var lists = [
     'subtitle': 'Oncologist',
     'Price': 400,
     'address' : 'Cairo',
-    'Date': '23/9/2020',
-    'Time': '12 am'
+    'DateTime': DateTime.utc(2021, 1, 14, 15, 30),
+
   },
 ];
