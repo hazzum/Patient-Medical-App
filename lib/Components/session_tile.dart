@@ -36,7 +36,7 @@ class SessionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/sixth');
+        Navigator.pushNamed(context, '/ninth');
       },
       child: Hero(
         tag: 'doctor' + index,
@@ -70,7 +70,7 @@ class SessionTile extends StatelessWidget {
                         color: Colors.transparent,
                         child: Text(title,
                             style: TextStyle(color: Colors.black54,
-                              fontSize: 15,))),
+                              fontSize: 16,))),
                     Material(
                       color: Colors.transparent,
                       child: Text(subtitle,

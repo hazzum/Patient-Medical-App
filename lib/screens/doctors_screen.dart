@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_application/Components/tile_one.dart';
 import 'package:medical_application/Data/doctors_homepage_data.dart';
@@ -45,13 +46,17 @@ class _DoctorScreenState extends State<DoctorScreen> {
           backgroundColor: Colors.blueGrey,
           elevation: 0,
           leading:
-            Builder(
-              builder: (context) => IconButton(
-                icon: Icon(
-                    Icons.menu_rounded,
-                color: Color(0xFF263444),
+            Padding(
+              padding: const EdgeInsets.only(left: 18, top: 5,),
+              child: Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(
+                      Icons.menu_rounded,
+                  color: Color(0xFF263444),
+                  ),
+                  iconSize: 35,
+                  onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
-                onPressed: () => Scaffold.of(context).openDrawer(),
               ),
             ),
           toolbarHeight: 40,
@@ -59,19 +64,29 @@ class _DoctorScreenState extends State<DoctorScreen> {
 
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsets.only(top: 5, right: 18.0),
               child: DropdownButton(
                 underline: Container(),
                 elevation: 0,
                 dropdownColor: Colors.blueGrey,
-                icon: Icon(
-                Icons.sort,
-                color: Colors.black,
+                icon: Padding(
+                  padding: const EdgeInsets.only(left: 5,),
+                  child: Icon(
+                  Icons.sort,
+                  color: Color(0xFF263444),
               ),
+                ),
+                iconSize: 35,
                 items: itemsList.map((items){
                   return DropdownMenuItem(
                     value: items,
-                    child: Center(child: Text(items, style: TextStyle(color: Colors.white),)),);
+                    child: Center(
+                      child: Text(items,
+                        style: TextStyle(
+                            color: Colors.white,
+                          fontSize: 17,
+                        ),),
+                    ),);
               }).toList(),
                 onChanged: (value){
                   setState(() {
@@ -80,7 +95,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
                   });
                 },
                 value: selectedCategory,
-
 
               ),
             ),
@@ -154,17 +168,25 @@ class _DoctorScreenState extends State<DoctorScreen> {
                       ),
                   ),
                 ),
-                
+
                 ListTile(
                   leading: Icon(Icons.message),
-                  title: Text('Medical form'),
+                  title: Text(
+                    'Medical form',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
                   onTap: () {
                     Navigator.pushNamed(context, '/eighth');
                   },
                 ),
                 ListTile(
                   leading: Icon(Icons.account_circle),
-                  title: Text('Upcoming Appointments'),
+                  title: Text('Upcoming Appointments',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),),
                   onTap: () {
                     Navigator.pushNamed(context, '/seventh');
                     }, ),
@@ -173,7 +195,10 @@ class _DoctorScreenState extends State<DoctorScreen> {
                     Navigator.pushNamed(context, '/tenth');
                     },
                   leading: Icon(Icons.settings),
-                  title: Text('Session History'),
+                  title: Text('Session History',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),),
                 ),
 
 

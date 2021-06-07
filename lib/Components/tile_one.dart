@@ -53,9 +53,9 @@ class TileOne extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
                 child: Image(
-                  width: 60,
+                  width: 100,
                   fit: BoxFit.cover,
-                  height: 60,
+                  height: 100,
                   image: AssetImage(image),
                 ),
               ),
@@ -69,7 +69,7 @@ class TileOne extends StatelessWidget {
                         color: Colors.transparent,
                         child: Text(title,
                             style: TextStyle(color: Colors.black54,
-                            fontSize: 15,))),
+                            fontSize: 16,))),
                     Material(
                       color: Colors.transparent,
                       child: Text(subtitle,
@@ -97,12 +97,12 @@ class TileOne extends StatelessWidget {
                         children: [
                           Text('$price',
                               style: TextStyle(color: Colors.black54,
-                                fontSize: 11,
+                                fontSize: 12,
                             )),
                           SizedBox(width: 3,),
                           Text('Egyptian Pounds',
                           style: TextStyle(color: Colors.black54,
-                          fontSize: 10,),),
+                          fontSize: 11,),),
                         ],
                       ),
                     ),
@@ -129,7 +129,7 @@ class TileOne extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 5.0),
                       child: Text('Exp: ' +experience + ' years',
                           style: TextStyle(
-                              color: Colors.grey.shade600, fontSize: 8.0)),
+                              color: Colors.grey.shade600, fontSize: 10.0)),
                     ),
                   )
                 ],

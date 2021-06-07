@@ -7,8 +7,8 @@ import 'package:medical_application/screens/doctors_screen.dart';
 import 'package:medical_application/screens/chosen_doctor_page.dart';
 import 'package:medical_application/screens/upcoming_appointments.dart';
 import 'package:medical_application/screens/application_form.dart';
-import 'package:medical_application/screens/session_history.dart';
-
+import 'package:medical_application/screens/session_history_list.dart';
+import 'package:medical_application/screens/session_history_content.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +30,7 @@ class MedicalApp extends StatelessWidget {
         '/sixth': (context) => DoctorPage(),
         '/seventh': (context) => UpcomingAppointments(),
         '/eighth': (context) => ProfileForm(),
+        '/ninth': (context) => SessionContent(),
         '/tenth': (context) => HomePage(),
 
 
@@ -37,10 +38,19 @@ class MedicalApp extends StatelessWidget {
 
 
       },
+
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          bodyText1: TextStyle(fontFamily: 'AmaticSC'),
-          bodyText2: TextStyle(color: Colors.black54, fontFamily: 'AmaticSC',),
+          headline1: TextStyle(
+            fontFamily: 'Segoe',
+           ),
+          bodyText1: TextStyle(
+            fontFamily: 'Segoe',
+            ),
+          bodyText2: TextStyle(
+            color: Colors.black54,
+            fontFamily: 'Segoe',
+            ),
         ),
       ),
 

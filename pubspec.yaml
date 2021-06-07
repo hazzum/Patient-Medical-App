@@ -19,8 +19,7 @@ dependencies:
   syncfusion_flutter_calendar: ^19.1.57
   flutter_form_builder: ^6.0.0
   grouped_buttons: ^1.0.4
-
-
+  assets_audio_player: ^3.0.3+3
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +40,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
+    - audio/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -56,10 +56,13 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: AmaticSC
+    - family: Segoe
       fonts:
-        - asset: fonts/AmaticSC-Regular.ttf
-        - asset: fonts/AmaticSC-Bold.ttf
+        - asset: fonts/Segoe UI.ttf
+        - asset: fonts/Segoe UI Bold.ttf
+        - asset: fonts/Segoe UI Italic.ttf
+        - asset: fonts/Segoe UI Bold Italic.ttf
+
 
   #         style: italic
   #   - family: Trajan Pro
