@@ -19,7 +19,6 @@ class _SessionContentState extends State<SessionContent> with SingleTickerProvid
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     player.open(Audio('audio/Neighbours from Hell.mp3'), autoStart: false, showNotification: true);
     iconController = AnimationController(vsync: this, duration: Duration(microseconds: 1000));

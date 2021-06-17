@@ -12,7 +12,7 @@ class DoctorPage extends StatelessWidget {
       'experience': '2',
       'subtitle': 'Physician',
       'address' : 'Cairo',
-      'price': 150,
+      'price': '150',
     };
 
     return Scaffold(
@@ -46,7 +46,6 @@ class DoctorPage extends StatelessWidget {
                 children: <Widget>[
                   SizedBox(height: 20),
                   TileOne(
-                    index: data['index'],
                     title: data['title'],
                     address: data['address'],
                     price: data['price'],

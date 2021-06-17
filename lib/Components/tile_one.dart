@@ -10,18 +10,16 @@ class TileOne extends StatelessWidget {
 
   final String experience;
 
-  final String index;
 
   final bool color;
 
   final String address;
 
-  final int price;
+  final String price;
 
   TileOne(
       {Key key,
         this.image,
-        this.index,
         this.title,
         this.subtitle,
         this.rating,
@@ -38,7 +36,7 @@ class TileOne extends StatelessWidget {
         Navigator.pushNamed(context, '/sixth');
       },
       child: Hero(
-        tag: 'doctor' + index,
+        tag: 'doctor',
         child: Container(
           margin: EdgeInsets.only(left: 15.0, bottom: 5.0, right: 15.0),
           padding:
@@ -52,11 +50,11 @@ class TileOne extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image(
-                  width: 100,
+                child: Image.network(
+                  image == 'Error' ? 'https://aawafi.com/uploads/partners/profile/doctor.jpg' : image,
+                  height: 100.0,
+                  width: 100.0,
                   fit: BoxFit.cover,
-                  height: 100,
-                  image: AssetImage(image),
                 ),
               ),
               Padding(

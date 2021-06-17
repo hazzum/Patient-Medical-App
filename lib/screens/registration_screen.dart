@@ -1,8 +1,9 @@
 import 'package:medical_application/constants.dart';
 import 'package:medical_application/Components/general_Button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 
@@ -14,7 +15,14 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
 
   final _auth = FirebaseAuth.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('patients');
+  String uid;
 
+  String getData(){
+    final User user =  _auth.currentUser;
+    final String uid = user.uid;
+    return uid;
+  }
 
   String genderValue = 'MALE';
   String email;
@@ -51,6 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 15.0,
                 ),
                 TextField(
+
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -187,23 +196,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
               GeneralButton(
                 style: TextStyle(color: Colors.white),
-                onPressed: ()async {
+                onPressed: () async {
+                  _auth.createUserWithEmailAndPassword(email: email, password: password)
+                      .then((result){
+                        uid = getData();
+                        if (uid != null){
+                          users
+                              .doc(uid)
+                              .set({
+                            'full_name': fullname,
+                            'phone_number': phonenumber,
+                            'email': email,
+                            'gender':genderValue,
+                          }, SetOptions(merge : true)).then((value) => print("User Added"))
+                              .catchError((error) => print("Failed to add user: $error"));
+
+                          Navigator.pushNamed(context, '/third');
+                        }
+                  });
+
                   setState(() {
                     _loadingIndicator = true;
                   });
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser!=null){
-                      Navigator.pushNamed(context, '/third');
-                    }
-                    setState(() {
-                      _loadingIndicator = false;
-                    });
-                  }
-                  catch (e){
-                    print (e);
-                  }
+
 
                 },
                 label: 'Register' ,
