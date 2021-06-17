@@ -11,25 +11,19 @@ class SessionTile extends StatelessWidget {
 
   final DateTime time;
 
-  final String index;
-
   final bool color;
 
   final String address;
 
-  final int price;
-
   SessionTile(
       {Key key,
-        this.image,
-        this.index,
-        this.title,
-        this.subtitle,
-        this.address,
-        this.time,
-        this.price,
-        this.color = true,
-        this.date})
+      this.image,
+      this.title,
+      this.subtitle,
+      this.address,
+      this.time,
+      this.color = true,
+      this.date})
       : super(key: key);
 
   @override
@@ -39,11 +33,11 @@ class SessionTile extends StatelessWidget {
         Navigator.pushNamed(context, '/ninth');
       },
       child: Hero(
-        tag: 'doctor' + index,
+        tag: 'doctor',
         child: Container(
           margin: EdgeInsets.only(left: 15.0, bottom: 5.0, right: 15.0),
           padding:
-          EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
+              EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
               color: color
                   ? Colors.blueGrey.shade400.withOpacity(0.1)
@@ -53,31 +47,36 @@ class SessionTile extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image(
-                  width: 100,
+                child: Image.network(
+                  image == 'Error'
+                      ? 'https://aawafi.com/uploads/partners/profile/doctor.jpg'
+                      : image,
+                  height: 100.0,
+                  width: 100.0,
                   fit: BoxFit.cover,
-                  height: 100,
-                  image: AssetImage(image),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Material(
                         color: Colors.transparent,
                         child: Text(title,
-                            style: TextStyle(color: Colors.black54,
-                              fontSize: 16,))),
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 15,
+                            ))),
                     Material(
                       color: Colors.transparent,
                       child: Text(subtitle,
                           style: TextStyle(color: Colors.grey.shade600)),
                     ),
-                    SizedBox(height: 5,),
-
+                    SizedBox(
+                      height: 5,
+                    ),
                   ],
                 ),
               ),
@@ -90,18 +89,26 @@ class SessionTile extends StatelessWidget {
                     color: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: Text((date.day).toString() + '/' + (date.month).toString() + '/' + (date.year).toString() ,
+                      child: Text(
+                          (date.day).toString() +
+                              '/' +
+                              (date.month).toString() +
+                              '/' +
+                              (date.year).toString(),
                           style: TextStyle(
-                              color: Colors.grey.shade600, fontSize: 12.0)),
+                              color: Colors.grey.shade600, fontSize: 11.0)),
                     ),
                   ),
                   Material(
                     color: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: Text((time.hour).toString() + ':' + (date.minute).toString(),
+                      child: Text(
+                          (time.hour).toString() +
+                              ':' +
+                              (date.minute).toString(),
                           style: TextStyle(
-                              color: Colors.grey.shade600, fontSize: 12.0)),
+                              color: Colors.grey.shade600, fontSize: 11.0)),
                     ),
                   ),
                 ],

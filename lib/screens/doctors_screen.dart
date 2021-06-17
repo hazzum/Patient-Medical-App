@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_application/Components/tile_one.dart';
-import 'package:medical_application/Data/doctors_homepage_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:medical_application/Data/json_data.dart';
 
@@ -17,13 +15,21 @@ class _DoctorScreenState extends State<DoctorScreen> {
 
   void initiateFilter(String value){
     filteredList = snapshotData;
-      String lowercaseSearch = value.toLowerCase();
       if (value == 'Address'){
         setState(() {
           filteredList.sort((a, b) => a['clinicInfo']['address'].compareTo(b['clinicInfo']['address']));
         });
-        print(filteredList);
       }
+    if (value == 'Price'){
+      setState(() {
+        filteredList.sort((a, b) => a['clinicInfo']['fees'].compareTo(b['clinicInfo']['fees']));
+      });
+    }
+    if (value == 'Speciality'){
+      setState(() {
+        filteredList.sort((a, b) => a['personalInfo']['specialty'].compareTo(b['personalInfo']['specialty']));
+      });
+    }
   }
   void initiateSearch(String value) {
     if (value.length == 0) {
@@ -35,7 +41,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
     if (value.length > 1) {
       searchedList = [];
       snapshotData.forEach((element) {
-        if (element['personalInfo']['displayName']
+        if (element['displayName']
             .toLowerCase()
             .contains(lowercaseSearch)) {
           setState(() {
@@ -56,11 +62,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
   List itemsList = ['Rating', 'Experience', 'Speciality', 'Price', 'Address'];
   String selectedCategory;
 
-  @override
-  void initState() {
-    super.initState();
-    doctorData = lists;
-  }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   void openDrawer() {
@@ -70,8 +71,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
   void closeDrawer() {
     Navigator.of(context).pop();
   }
-
-  List doctorsList = lists;
 
   @override
   Widget build(BuildContext context) {
@@ -205,8 +204,8 @@ class _DoctorScreenState extends State<DoctorScreen> {
                                   .map<Widget>((v) {
                                 return TileOne(
                                   title:
-                                      (v['personalInfo']['displayName']) != null
-                                          ? (v['personalInfo']['displayName'])
+                                      (v['displayName']) != null
+                                          ? (v['displayName'])
                                           : 'Error',
                                   subtitle:
                                       (v['personalInfo']['specialty']) != null
@@ -297,20 +296,4 @@ class _DoctorScreenState extends State<DoctorScreen> {
     );
   }
 
-  sortFilteredDoctors(String value) {
-    if (value == 'Rating')
-      doctorData.sort((a, b) => b['rating'].compareTo(a['rating']));
-    else if (value == 'Experience')
-      doctorData.sort((a, b) => b['experience'].compareTo(a['experience']));
-    else if (value == 'Speciality')
-      doctorData.sort((a, b) => b['subtitle'].compareTo(a['subtitle']));
-    else if (value == 'Address')
-      doctorData.sort((a, b) => a['address'].compareTo(b['address']));
-    else if (value == 'Price')
-      doctorData.sort((a, b) => a['Price'].compareTo(b['Price']));
-
-    setState(() {
-      this.doctorData = doctorData;
-    });
-  }
 }
