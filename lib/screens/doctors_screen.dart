@@ -76,10 +76,10 @@ class _DoctorScreenState extends State<DoctorScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Color(0xFF1DB5E4),
         key: _scaffoldKey,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Color(0xFF1DB5E4),
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.only(
@@ -90,7 +90,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
               builder: (context) => IconButton(
                 icon: Icon(
                   Icons.menu_rounded,
-                  color: Color(0xFF263444),
+                  color: Colors.white,
                 ),
                 iconSize: 35,
                 onPressed: () => Scaffold.of(context).openDrawer(),
@@ -105,14 +105,14 @@ class _DoctorScreenState extends State<DoctorScreen> {
               child: DropdownButton(
                 underline: Container(),
                 elevation: 0,
-                dropdownColor: Colors.blueGrey,
+                dropdownColor: Color(0xFF1DB5E4).withOpacity(0.8),
                 icon: Padding(
                   padding: const EdgeInsets.only(
                     left: 5,
                   ),
                   child: Icon(
                     Icons.sort,
-                    color: Color(0xFF263444),
+                    color: Colors.white,
                   ),
                 ),
                 iconSize: 35,

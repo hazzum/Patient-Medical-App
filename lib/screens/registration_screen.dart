@@ -45,21 +45,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             children: <Widget>[
             Wrap(
               alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.start,
               runSpacing: 15,
               children: <Widget>[
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    height: 80.0,
-                    child: Image.asset('images/logo.png'),
+                    height: 100.0,
+                    child: Image.asset('images/imsLogo.png'),
                   ),
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 25.0,
                 ),
                 TextField(
-
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -142,17 +141,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
 
                 SizedBox(
-                  height: 24.0,
+                  height: 34.0,
                 ),
 
               ],
             ),
 
             DropdownButton<String>(
+              iconDisabledColor: Colors.black38,
+              iconEnabledColor: Colors.black38,
+              autofocus: true,
+              focusColor: Colors.grey,
+              dropdownColor: Color(0xFF1DB5E4),
               value: genderValue,
               icon: Icon(
                 Icons.arrow_downward,
-                color: Colors.blueAccent,
+                color: Colors.black38,
               ),
               underline: Container(
                 color: Colors.white,
@@ -193,6 +197,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 );
               }).toList(),
             ),
+              SizedBox(height: 50,),
 
               GeneralButton(
                 style: TextStyle(color: Colors.white),
@@ -221,8 +226,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
 
                 },
-                label: 'Register' ,
-                color: Colors.blueAccent,
+                label: 'Sign up' ,
+                color: Color(0xFF1DB5E4),
               ),
 
             ],

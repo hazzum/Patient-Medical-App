@@ -48,12 +48,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('images/imsLogo.png'),
                     height: 200.0,
                   ),
                 ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Text(
-                  'Doctor Who?',
+                  'Medical DC',
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontSize: 45.0,
@@ -66,17 +69,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
               height: 80.0,
             ),
             GeneralButton(
-              color: Colors.lightBlueAccent,
+              color: Color(0xFF1DB5E4),
               onPressed: () {
                 Navigator.pushNamed(context, '/third');
               },
               label: 'Log In',),
             GeneralButton(
-              color: Colors.blueAccent,
+              color: Color(0xFF1DB5E4),
               onPressed: () {
                 Navigator.pushNamed(context, '/fourth');
               },
-              label: 'Register',),
+              label: 'Sign Up',),
 
           ],
         ),

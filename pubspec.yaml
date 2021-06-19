@@ -31,7 +31,7 @@ dev_dependencies:
 
 flutter_icons:
   android: true
-  image_path: "images/logo2.png"
+  image_path: "images/imsLogo.png"
 
 flutter:
 

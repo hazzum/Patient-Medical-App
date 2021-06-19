@@ -21,6 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
+
+      color: Colors.grey,
+      opacity: 0.8,
       inAsyncCall: _LoadingIndicator,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -33,8 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Hero(
                 tag: 'logo',
                 child: Container(
-                  height: 80.0,
-                  child: Image.asset('images/logo.png'),
+                  height: 100.0,
+                  child: Image.asset('images/imsLogo.png'),
                 ),
               ),
               SizedBox(
@@ -84,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 24.0,
               ),
               GeneralButton(
-                color: Colors.lightBlueAccent,
+                color: Color(0xFF1DB5E4),
                 onPressed: () async{
                   setState(() {
                     _LoadingIndicator= true;
