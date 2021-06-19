@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class TileOne extends StatelessWidget {
   final String image;
 
@@ -10,7 +11,6 @@ class TileOne extends StatelessWidget {
 
   final String experience;
 
-
   final bool color;
 
   final String address;
@@ -19,14 +19,14 @@ class TileOne extends StatelessWidget {
 
   TileOne(
       {Key key,
-        this.image,
-        this.title,
-        this.subtitle,
-        this.rating,
-        this.address,
-        this.price,
-        this.color = true,
-        this.experience})
+      this.image,
+      this.title,
+      this.subtitle,
+      this.rating,
+      this.address,
+      this.price,
+      this.color = true,
+      this.experience})
       : super(key: key);
 
   @override
@@ -40,18 +40,19 @@ class TileOne extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(left: 15.0, bottom: 5.0, right: 15.0),
           padding:
-          EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
+              EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
-              color: color
-                  ? Color(0xFF1DB5E4).withAlpha(25)
-                  : Colors.transparent,
+              color:
+                  color ? Color(0xFF1DB5E4).withAlpha(25) : Colors.transparent,
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
                 child: Image.network(
-                  image == 'Error' ? 'https://aawafi.com/uploads/partners/profile/doctor.jpg' : image,
+                  image == 'Error'
+                      ? 'https://aawafi.com/uploads/partners/profile/doctor.jpg'
+                      : image,
                   height: 100.0,
                   width: 100.0,
                   fit: BoxFit.cover,
@@ -66,41 +67,59 @@ class TileOne extends StatelessWidget {
                     Material(
                         color: Colors.transparent,
                         child: Text(title,
-                            style: TextStyle(color: Colors.black54,
-                            fontSize: 16,))),
+
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black.withOpacity(0.7),
+                              fontSize: 16,
+                            ))),
                     Material(
                       color: Colors.transparent,
                       child: Text(subtitle,
                           style: TextStyle(color: Colors.grey.shade600)),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Material(
                       color: Colors.transparent,
                       child: Row(
                         children: [
                           Icon(
                             Icons.place,
-                          size: 13,
-                          color: Colors.black54,),
+                            size: 13,
+                            color: Colors.black54,
+                          ),
                           Text(address,
-                              style: TextStyle(color: Colors.blueGrey.shade500,
-                              fontSize: 13,)),
+                              style: TextStyle(
+                                color: Colors.blueGrey.shade500,
+                                fontSize: 13,
+                              )),
                         ],
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Material(
                       color: Colors.transparent,
                       child: Row(
                         children: [
                           Text('$price',
-                              style: TextStyle(color: Colors.black54,
+                              style: TextStyle(
+                                color: Colors.black54,
                                 fontSize: 12,
-                            )),
-                          SizedBox(width: 3,),
-                          Text('Egyptian Pounds',
-                          style: TextStyle(color: Colors.black54,
-                          fontSize: 11,),),
+                              )),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            'Egyptian Pounds',
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 11,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -125,7 +144,7 @@ class TileOne extends StatelessWidget {
                     color: Colors.transparent,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
-                      child: Text('Exp: ' +experience + ' years',
+                      child: Text('Exp: ' + experience + ' years',
                           style: TextStyle(
                               color: Colors.grey.shade600, fontSize: 10.0)),
                     ),

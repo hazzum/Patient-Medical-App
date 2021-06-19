@@ -5,27 +5,49 @@ import 'package:medical_application/Components/login_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  void showMyDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Sign In Error"),
+          content: new Text("Try another E-mail or Password"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new TextButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   String Email;
   String Password;
   final _auth = FirebaseAuth.instance;
   bool _LoadingIndicator = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
-
       color: Colors.grey,
       opacity: 0.8,
       inAsyncCall: _LoadingIndicator,
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.white,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -56,11 +78,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintStyle: TextStyle(
                     color: Colors.grey,
                   ),
-
                   hintText: 'Enter your Email',
                 ),
               ),
-
               SizedBox(
                 height: 8.0,
               ),
@@ -78,34 +98,40 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintStyle: TextStyle(
                     color: Colors.grey,
                   ),
-
                   hintText: 'Enter your Password',
                 ),
               ),
-
               SizedBox(
                 height: 24.0,
               ),
               GeneralButton(
                 color: Color(0xFF1DB5E4),
-                onPressed: () async{
+                onPressed: () async {
                   setState(() {
-                    _LoadingIndicator= true;
+                    _LoadingIndicator = true;
                   });
                   try {
                     final signedInUser = await _auth.signInWithEmailAndPassword(
                         email: Email, password: Password);
-                    if (signedInUser!=null){
+                    if (signedInUser != null) {
                       Navigator.pushNamed(context, '/fifth');
                     }
                     setState(() {
-                      _LoadingIndicator= false;
+                      _LoadingIndicator = false;
                     });
+                  } catch (e) {
+                    showMyDialog();
+                    setState(() {
+                      _LoadingIndicator = false;
+                    });
+                      _scaffoldKey.currentState.showSnackBar(
+                          SnackBar(
+                            backgroundColor: Color(0xFF1DB5E4),
+                            content: new Text('Error in E-mail or Password'),
+                            duration: new Duration(seconds: 3),
+                          ),
+                      );
                   }
-                  catch (e){
-                    print(e);
-                  }
-
                 },
                 label: 'Log In',
               ),
@@ -115,5 +141,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }

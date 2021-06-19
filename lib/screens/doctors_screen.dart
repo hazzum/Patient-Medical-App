@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:medical_application/Components/tile_one.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:medical_application/Data/json_data.dart';
@@ -11,26 +14,30 @@ class DoctorScreen extends StatefulWidget {
 class _DoctorScreenState extends State<DoctorScreen> {
   List snapshotData = SearchService().returnData();
   var searchedList = [];
-  var filteredList= [];
+  var filteredList = [];
 
-  void initiateFilter(String value){
+  void initiateFilter(String value) {
     filteredList = snapshotData;
-      if (value == 'Address'){
-        setState(() {
-          filteredList.sort((a, b) => a['clinicInfo']['address'].compareTo(b['clinicInfo']['address']));
-        });
-      }
-    if (value == 'Price'){
+    if (value == 'Address') {
       setState(() {
-        filteredList.sort((a, b) => a['clinicInfo']['fees'].compareTo(b['clinicInfo']['fees']));
+        filteredList.sort((a, b) =>
+            a['clinicInfo']['address'].compareTo(b['clinicInfo']['address']));
       });
     }
-    if (value == 'Speciality'){
+    if (value == 'Price') {
       setState(() {
-        filteredList.sort((a, b) => a['personalInfo']['specialty'].compareTo(b['personalInfo']['specialty']));
+        filteredList.sort((a, b) =>
+            a['clinicInfo']['fees'].compareTo(b['clinicInfo']['fees']));
+      });
+    }
+    if (value == 'Speciality') {
+      setState(() {
+        filteredList.sort((a, b) => a['personalInfo']['specialty']
+            .compareTo(b['personalInfo']['specialty']));
       });
     }
   }
+
   void initiateSearch(String value) {
     if (value.length == 0) {
       setState(() {
@@ -41,9 +48,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
     if (value.length > 1) {
       searchedList = [];
       snapshotData.forEach((element) {
-        if (element['displayName']
-            .toLowerCase()
-            .contains(lowercaseSearch)) {
+        if (element['displayName'].toLowerCase().contains(lowercaseSearch)) {
           setState(() {
             searchedList.add(element);
           });
@@ -62,7 +67,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
   List itemsList = ['Rating', 'Experience', 'Speciality', 'Price', 'Address'];
   String selectedCategory;
 
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   void openDrawer() {
     _scaffoldKey.currentState.openDrawer();
@@ -76,15 +80,15 @@ class _DoctorScreenState extends State<DoctorScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xFF1DB5E4),
+        backgroundColor: Color(0xFF54d1f7),
         key: _scaffoldKey,
         appBar: AppBar(
-          backgroundColor: Color(0xFF1DB5E4),
+          backgroundColor: Color(0xFF54d1f7),
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.only(
               left: 18,
-              top: 5,
+              top: 10,
             ),
             child: Builder(
               builder: (context) => IconButton(
@@ -97,40 +101,34 @@ class _DoctorScreenState extends State<DoctorScreen> {
               ),
             ),
           ),
-          toolbarHeight: 40,
+          toolbarHeight: 50,
           leadingWidth: 70,
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 18.0),
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 15, 20, 10),
               child: DropdownButton(
-                underline: Container(),
+                underline: SizedBox(),
                 elevation: 0,
-                dropdownColor: Color(0xFF1DB5E4).withOpacity(0.8),
-                icon: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 5,
-                  ),
-                  child: Icon(
-                    Icons.sort,
-                    color: Colors.white,
-                  ),
+                dropdownColor: Color(0xFF1DB5E4),
+                icon: Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.white,
                 ),
                 iconSize: 35,
                 items: itemsList.map((items) {
                   return DropdownMenuItem(
                     value: items,
-                    child: Center(
-                      child: Text(
-                        items,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
+                    child: Text(
+                      items,
+                      textAlign: TextAlign.center, // no impact
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
                       ),
                     ),
                   );
                 }).toList(),
-                onChanged:(value) {
+                onChanged: (value) {
                   initiateFilter(value);
                   setState(() {
                     selectedCategory = value;
@@ -150,12 +148,26 @@ class _DoctorScreenState extends State<DoctorScreen> {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(90, 8, 25, 8),
+                  padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
                   child: TextField(
                     decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(4),
-                      hintText: 'Search doctors by name',
+                      hintText: 'Search by Name',
+                      hintStyle: TextStyle(
+                        color: Colors.white60,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 0.5),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
                     ),
                     onChanged: (value) {
                       initiateSearch(value);
@@ -197,16 +209,18 @@ class _DoctorScreenState extends State<DoctorScreen> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: ((isUserSearching && searchedList.isNotEmpty)
-                                      ? (searchedList)
-                                      : (isUserFiltering && filteredList.isNotEmpty)?
-                              filteredList : (snapshot.data.docs))
-                                  .map<Widget>((v) {
+                              children:
+                                  ((isUserSearching && searchedList.isNotEmpty)
+                                          ? (searchedList)
+                                          : (isUserFiltering &&
+                                                  filteredList.isNotEmpty)
+                                              ? filteredList
+                                              : (snapshot.data.docs))
+                                      .map<Widget>((v) {
                                 return TileOne(
-                                  title:
-                                      (v['displayName']) != null
-                                          ? (v['displayName'])
-                                          : 'Error',
+                                  title: (v['displayName']) != null
+                                      ? (v['displayName'])
+                                      : 'Error',
                                   subtitle:
                                       (v['personalInfo']['specialty']) != null
                                           ? (v['personalInfo']['specialty'])
@@ -238,15 +252,21 @@ class _DoctorScreenState extends State<DoctorScreen> {
         drawer: Drawer(
           child: Container(
             height: double.infinity,
-            color: Colors.black26,
+            color: Color(0xFF1DB5E4),
+            padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
-                  child: Text('Doctor Who?'),
+                  child: Text(
+                    '',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("images/logo.png"),
+                      image: AssetImage("images/imsLogo.png"),
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -295,5 +315,4 @@ class _DoctorScreenState extends State<DoctorScreen> {
       ),
     );
   }
-
 }
