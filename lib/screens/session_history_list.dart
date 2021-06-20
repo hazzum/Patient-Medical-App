@@ -65,10 +65,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Color(0xFF54d1f7),
         key: _scaffoldKey,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Color(0xFF54d1f7),
           leading: Padding(
             padding: const EdgeInsets.only(
               left: 18,
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => IconButton(
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Color(0xFF263444),
+                  color: Colors.white,
                 ),
                 iconSize: 30,
                 onPressed: () => Navigator.of(context).pop(),
@@ -94,13 +94,13 @@ class _HomePageState extends State<HomePage> {
               child: DropdownButton(
                 underline: Container(),
                 elevation: 0,
-                dropdownColor: Colors.blueGrey,
+                dropdownColor: Color(0xFF54d1f7),
                 icon: Padding(
                   padding: const EdgeInsets.only(
                     left: 5,
                   ),child: Icon(
-                    Icons.sort,
-                    color: Colors.black,size: 30,
+                    Icons.arrow_drop_down,
+                    color: Colors.white,size: 30,
 
                   ),
                 ),
@@ -133,12 +133,26 @@ class _HomePageState extends State<HomePage> {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(90, 8, 25, 8),
+                  padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
                   child: TextField(
                     decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(4),
-                      hintText: 'Search doctors by name',
+                      hintText: 'Search by Name',
+                      hintStyle: TextStyle(
+                        color: Colors.white60,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 0.5),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                      ),
                     ),
                     onChanged: (value) {
                       initiateSearch(value);

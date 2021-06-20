@@ -43,7 +43,7 @@ class TileOne extends StatelessWidget {
               EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
               color:
-                  color ? Color(0xFF1DB5E4).withAlpha(25) : Colors.transparent,
+                  color ? Color(0xFF1DB5E4).withAlpha(40) : Colors.transparent,
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
             children: <Widget>[

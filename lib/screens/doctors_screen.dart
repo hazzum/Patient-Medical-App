@@ -191,7 +191,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(25.0),
                             topRight: Radius.circular(25.0)),
-                        color: Colors.white,
+                        color: Colors.white.withOpacity(1),
                       ),
                       width: double.infinity,
                       child: Container(

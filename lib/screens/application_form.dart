@@ -36,7 +36,7 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey.shade800,
+        backgroundColor: Color(0xFF1DB5E4),
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(15, 25, 15, 10),
           child: Form(
@@ -112,7 +112,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
                 CheckboxGroup(
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                   labels: <String>[
                     "Penicillin",
@@ -125,7 +125,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     "Codeine",
                     "Metal",
                   ],
-                  activeColor: Colors.black54,
+                  activeColor: Colors.blueGrey,
                   onChange: (bool isChecked, String label, int index) =>
                       print("isChecked: $isChecked  "
                           " label: $label  index: $index"),
@@ -147,7 +147,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
                 CheckboxGroup(
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                   labels: <String>[
                     "HIV/AIDS",
@@ -169,7 +169,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     "Diabetes",
                     "Cold sores/Fever blisters"
                   ],
-                  activeColor: Colors.black54,
+                  activeColor: Colors.blueGrey,
                   onChange: (bool isChecked, String label, int index) =>
                       print("isChecked: $isChecked  "
                           " label: $label  index: $index"),
@@ -191,14 +191,14 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
                 CheckboxGroup(
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                   labels: <String>[
                     'Pregnant/trying to get?',
                     'Taking Oral contraceptives?',
                     'Nursing?',
                   ],
-                  activeColor: Colors.black54,
+                  activeColor: Colors.blueGrey,
                   onChange: (bool isChecked, String label, int index) =>
                       print("isChecked: $isChecked  "
                           " label: $label  index: $index"),
@@ -237,7 +237,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
                 CheckboxGroup(
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                   labels: <String>[
                     'Heart Attack, age < 50',
@@ -251,7 +251,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     'Asthma/hay fever',
                     "Obesity",
                   ],
-                  activeColor: Colors.black54,
+                  activeColor: Colors.blueGrey,
                   onChange: (bool isChecked, String label, int index) =>
                       print("isChecked: $isChecked  "
                           " label: $label  index: $index"),
@@ -270,13 +270,13 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
                 CheckboxGroup(
                   labelStyle: TextStyle(
-                    color: Colors.white70,
+                    color: Colors.white,
                   ),
                   labels: <String>[
                     "Smoke Cigarettes?",
                     "Drink Alcohol",
                   ],
-                  activeColor: Colors.black54,
+                  activeColor: Colors.blueGrey,
                   onChange: (bool isChecked, String label, int index) =>
                       print("isChecked: $isChecked  "
                           " label: $label  index: $index"),
@@ -293,9 +293,10 @@ class _ProfileFormState extends State<ProfileForm> {
                   ),
                   child: ElevatedButton(
                     style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Color(0xFF1DB5E4),),
                       elevation: MaterialStateProperty.all(0),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blueAccent),
+                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {

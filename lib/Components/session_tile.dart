@@ -40,7 +40,7 @@ class SessionTile extends StatelessWidget {
               EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
               color: color
-                  ? Colors.blueGrey.shade400.withOpacity(0.1)
+                  ? Color(0xFF1DB5E4).withAlpha(40)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
