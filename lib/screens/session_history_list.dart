@@ -53,8 +53,6 @@ class _HomePageState extends State<HomePage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CollectionReference users = FirebaseFirestore.instance.collection('doctors');
-  CollectionReference collection =
-      FirebaseFirestore.instance.collection("doctors");
   bool isUserSearching = false;
   bool isUserFiltering = false;
 

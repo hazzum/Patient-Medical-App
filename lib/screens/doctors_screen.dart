@@ -58,8 +58,6 @@ class _DoctorScreenState extends State<DoctorScreen> {
   }
 
   CollectionReference users = FirebaseFirestore.instance.collection('doctors');
-  CollectionReference collection =
-      FirebaseFirestore.instance.collection("doctors");
   bool isUserSearching = false;
   bool isUserFiltering = false;
   String query = '';
@@ -236,6 +234,9 @@ class _DoctorScreenState extends State<DoctorScreen> {
                                   address: (v['clinicInfo']['address']) != null
                                       ? v['clinicInfo']['address']
                                       : "Error",
+                                  url: (v['id']) != ''
+                                      ? v['id']
+                                      : "x2QUdUU42kIr1S8cimwWJ",
                                 );
                               }).toList(),
                             ),
@@ -302,6 +303,19 @@ class _DoctorScreenState extends State<DoctorScreen> {
                   leading: Icon(Icons.settings),
                   title: Text(
                     'Session History',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25,),
+                ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tenth');
+                  },
+                  leading: Icon(Icons.settings),
+                  title: Text(
+                    'Log Out',
                     style: TextStyle(
                       fontSize: 20,
                     ),

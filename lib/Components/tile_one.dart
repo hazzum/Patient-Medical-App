@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medical_application/screens/chosen_doctor_page.dart';
 
 class TileOne extends StatelessWidget {
+  final String url;
+
   final String image;
 
   final String title;
@@ -19,6 +22,7 @@ class TileOne extends StatelessWidget {
 
   TileOne(
       {Key key,
+      this.url,
       this.image,
       this.title,
       this.subtitle,
@@ -32,8 +36,15 @@ class TileOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(context, '/sixth');
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DoctorPage(
+              id: url,
+            ),
+          ),
+        );
       },
       child: Hero(
         tag: 'doctor',
@@ -43,7 +54,7 @@ class TileOne extends StatelessWidget {
               EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
               color:
-                  color ? Color(0xFF1DB5E4).withAlpha(40) : Colors.transparent,
+                  color ? Color(0xFF1DB5E4).withAlpha(40) :  Color(0xFF54d1f7).withOpacity(0.1),
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
             children: <Widget>[
@@ -67,7 +78,6 @@ class TileOne extends StatelessWidget {
                     Material(
                         color: Colors.transparent,
                         child: Text(title,
-
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: Colors.black.withOpacity(0.7),

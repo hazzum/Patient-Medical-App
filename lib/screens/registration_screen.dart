@@ -51,12 +51,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    height: 100.0,
+                    height: 80.0,
                     child: Image.asset('images/imsLogo.png'),
                   ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 15.0,
                 ),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -77,7 +77,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
 
                 SizedBox(
-                  height: 24.0,
+                  height: 20.0,
                 ),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -98,7 +98,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
 
                 SizedBox(
-                  height: 24.0,
+                  height: 20.0,
                 ),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -120,7 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
 
                 SizedBox(
-                  height: 24.0,
+                  height: 20.0,
                 ),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -138,10 +138,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                     hintText: 'Enter your Phone Number',
                   ),
-                ),
-
-                SizedBox(
-                  height: 34.0,
                 ),
 
               ],
@@ -197,7 +193,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 );
               }).toList(),
             ),
-              SizedBox(height: 50,),
+              SizedBox(height: 10,),
 
               GeneralButton(
                 style: TextStyle(color: Colors.white),
@@ -213,6 +209,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             'phone_number': phonenumber,
                             'email': email,
                             'gender':genderValue,
+                            'id': _auth.currentUser.uid,
                           }, SetOptions(merge : true)).then((value) => print("User Added"))
                               .catchError((error) => print("Failed to add user: $error"));
 

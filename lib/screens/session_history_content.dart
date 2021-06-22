@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 
 class SessionContent extends StatefulWidget {
   const SessionContent({Key key}) : super(key: key);
@@ -9,181 +8,249 @@ class SessionContent extends StatefulWidget {
   _SessionContentState createState() => _SessionContentState();
 }
 
-class _SessionContentState extends State<SessionContent> with SingleTickerProviderStateMixin {
-  AnimationController iconController;
-  AssetsAudioPlayer player = AssetsAudioPlayer();
-
-  bool isAnimated = false;
-  bool showPlay = true;
-  bool showPause= true;
-
-  @override
-  void initState() {
-    super.initState();
-    player.open(Audio('audio/Neighbours from Hell.mp3'), autoStart: false, showNotification: true);
-    iconController = AnimationController(vsync: this, duration: Duration(microseconds: 1000));
-  }
-
+class _SessionContentState extends State<SessionContent> {
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
-          elevation: 0,
-      ),
-        body: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25.0),
-                  topRight: Radius.circular(25.0)),
-              color: Colors.blueGrey.shade400,
-            ),
-            width: double.infinity,
-            child: Container(
-              padding: EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Text("Patient Files",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                          ),
-                          ),
-                          SizedBox(height: 10,),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              'https://media.springernature.com/lw685/springer-static/image/art%3A10.1007%2Fs11042-020-10151-w/MediaObjects/11042_2020_10151_Fig2_HTML.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              'https://www.itnonline.com/sites/default/files/imce-users/ud236/2020-01/Coronavirus_worsening_CT_RSNA_Radiology_2.jpg',
-                              fit: BoxFit.fill,
-                              loadingBuilder:(BuildContext context, Widget child,ImageChunkEvent loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    value: loadingProgress.expectedTotalBytes != null ?
-                                    loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
-                                        : null,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              'https://www.researchgate.net/profile/William-Makis/publication/49833364/figure/fig1/AS:277337875730432@1443133910229/F-FDG-PET-CT-Discovery-ST-GE-Healthcare-Canada-performed-22-months-following.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(25.0),
-                                  topRight: Radius.circular(25.0),
-                                bottomLeft: Radius.circular(25.0),
-                                bottomRight: Radius.circular(25.0),
-
-                              ),
-                              color: Colors.white54,),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Doctor's Voice Record", style: TextStyle(
-                                  fontSize: 20,
-                                ),),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      child: Icon(
-                                        Icons.fast_rewind,
-                                        color: Colors.black87,
-                                      ),
-                                      onTap: (){
-                                        player.seekBy(Duration(seconds: -10));
-                                      },
-                                    ),
-                                    GestureDetector(
-                                      child: AnimatedIcon(
-                                        icon: AnimatedIcons.play_pause,
-                                        progress: iconController,
-                                        size: 50,
-                                        color: Colors.black87,
-                                      ),
-                                      onTap: (){
-                                        animateIcon();
-                                      },
-                                    ),
-
-                                    InkWell(
-                                      child: Icon(
-                                        Icons.fast_forward,
-                                        color: Colors.black87,
-                                      ),
-                                      onTap: (){
-                                        player.seekBy(Duration(seconds: 10));
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                ],
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            child: Text(
+              'Session content',
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 18,
               ),
             ),
           ),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black54,
+                size: 25,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ),
         ),
+        body: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25.0),
+                topRight: Radius.circular(25.0)),
+            color: Colors.white,
+          ),
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Symptoms",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                                color: Color(0xFF54d1f7).withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Text(
+                                "feeling feverish\ncough\nsore throat\nrunny or stuffy nose\nmuscle or body aches\nheadaches\nfatigue (tiredness)\nVomiting and diarrhea",
+                                style: TextStyle(fontSize: 16.0))),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Diagnosis",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                                color: Color(0xFF54d1f7).withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Text(
+                                "Tha patient suffered from sore throat due to a bacterial infections in the lung, he didn't experience any issues in his eating or sleeping behaviors, this indicates that it's not Covid-19 case, it's regular Flu",
+                                style: TextStyle(fontSize: 16.0))),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Comments",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                                color: Color(0xFF54d1f7).withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Text(
+                                "SARS-CoV-2 lab\nThese Laboratory tests are needed:\ncomplete blood count, C-reactive protein (CRP), D-dimer, clotting tests, lactic dehydrogenase (LDH), ferritin, and procalcitonin",
+                                style: TextStyle(fontSize: 16.0))),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "Prescription",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              color: Color(0xFF54d1f7).withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
 
+                                  Text(
+                                    "Dr. Emily Wilson - Physician",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Consultant Of General and Vascular surgery\nMbb. CH. MS. MD.\n",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+
+                              Divider(color: Colors.black),
+                              Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(20.0),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      color: Color(0xFF54d1f7).withOpacity(0.1),
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'R/',
+                                        style: TextStyle(fontSize: 25),
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Text(
+                                          "Relenza (zanamivir), Rapivab (peramivir) , or Xofluza (baloxavir marboxil)",
+                                          style: TextStyle(fontSize: 16.0)),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                          "Pen-Vee K (penicillin), Amoxil (amoxicillin), or Keflex (cephalosporin)",
+                                          style: TextStyle(fontSize: 16.0)),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text("Flonase (fluticasone)",
+                                          style: TextStyle(fontSize: 16.0)),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text("Tussionex PennKinetic or Nalex AC",
+                                          style: TextStyle(fontSize: 16.0)),
+                                    ],
+                                  )),
+                              Divider(color: Colors.black),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Clinic number: 01147374254",
+                                      style: TextStyle(fontSize: 16.0)),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                      "Clinic location: 45 Mahmoud El-ez street, Cairo",
+                                      style: TextStyle(fontSize: 16.0)),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                      "Clinic Working hours: Sunday to Thursday, from 7am to 2pm",
+                                      style: TextStyle(fontSize: 16.0)),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text("Tussionex PennKinetic or Nalex AC",
+                                      style: TextStyle(fontSize: 16.0)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 
-
-  void animateIcon(){
-    setState(() {
-      isAnimated = !isAnimated;
-      isAnimated ? iconController.forward(): iconController.reverse();
-      if (isAnimated ){
-        iconController.forward();
-        player.play();
-      }else{
-        iconController.reverse();
-        player.pause();
-      }
-    });
-
-
-
-  }
-  }
-
+}

@@ -1,7 +1,6 @@
 import 'package:medical_application/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_application/Components/general_Button.dart';
-import 'package:medical_application/Components/login_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -34,10 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  String Email;
-  String Password;
+  String email;
+  String pass;
   final _auth = FirebaseAuth.instance;
-  bool _LoadingIndicator = false;
+  bool _loadingIndicator = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -45,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return ModalProgressHUD(
       color: Colors.grey,
       opacity: 0.8,
-      inAsyncCall: _LoadingIndicator,
+      inAsyncCall: _loadingIndicator,
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.white,
@@ -72,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.grey[800],
                 ),
                 onChanged: (value) {
-                  Email = value;
+                  email = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
                   hintStyle: TextStyle(
@@ -92,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.grey[800],
                 ),
                 onChanged: (value) {
-                  Password = value;
+                  pass = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
                   hintStyle: TextStyle(
@@ -108,21 +107,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Color(0xFF1DB5E4),
                 onPressed: () async {
                   setState(() {
-                    _LoadingIndicator = true;
+                    _loadingIndicator = true;
                   });
                   try {
                     final signedInUser = await _auth.signInWithEmailAndPassword(
-                        email: Email, password: Password);
+                        email: email, password: pass);
                     if (signedInUser != null) {
                       Navigator.pushNamed(context, '/fifth');
                     }
                     setState(() {
-                      _LoadingIndicator = false;
+                      _loadingIndicator = false;
                     });
                   } catch (e) {
                     showMyDialog();
                     setState(() {
-                      _LoadingIndicator = false;
+                      _loadingIndicator = false;
                     });
                       _scaffoldKey.currentState.showSnackBar(
                           SnackBar(
