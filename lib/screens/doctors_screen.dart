@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:medical_application/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:medical_application/Components/tile_one.dart';
@@ -311,9 +311,10 @@ class _DoctorScreenState extends State<DoctorScreen> {
                 SizedBox(height: 25,),
                 ListTile(
                   onTap: () {
-                    Navigator.pushNamed(context, '/tenth');
-                  },
-                  leading: Icon(Icons.settings),
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => WelcomeScreen()),
+                            (Route<dynamic> route) => false);                  },
+                  leading: Icon(Icons.logout),
                   title: Text(
                     'Log Out',
                     style: TextStyle(
