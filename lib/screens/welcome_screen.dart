@@ -55,14 +55,28 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 SizedBox(
                   height: 20.0,
                 ),
-                Text(
-                  'Medical DC',
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Medi',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ), Text(
+                      'Chain',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+
+                  ],
                 ),
+
               ],
             ),
             SizedBox(
