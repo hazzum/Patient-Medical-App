@@ -31,11 +31,13 @@ class _ProfileFormState extends State<ProfileForm> {
   String emergencyRelation;
 
   String userInput;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Color(0xFF1DB5E4),
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(15, 25, 15, 10),
@@ -300,9 +302,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                        ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(
                             SnackBar(content: Text('Processing Data')));
-                        showAlertDialog(context);
+                        showAlertDialog(_scaffoldKey.currentContext);
                       }
                     },
                     child: Text('Submit'),
@@ -322,6 +324,7 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Text("Cancel"),
       onPressed: () {
         Navigator.of(context).pop();
+
       },
     );
     Widget confirmButton = TextButton(
@@ -331,11 +334,9 @@ class _ProfileFormState extends State<ProfileForm> {
 
         if (uid != null) {
           users.doc(uid).set({
-            'emergency_info': {
-              'emergency_name': emergencyName,
-              'emergency_number': emergencyNumber,
-              'emergency_relation': emergencyRelation,
-            }
+              'emergencyFullName': emergencyName,
+              'emergencyPhoneNumber': emergencyNumber,
+              'relation': emergencyRelation,
           }, SetOptions(merge: true)).then((value) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Confirmed')));
@@ -359,7 +360,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
     // show the dialog
     showDialog(
-      context: context,
+      context: _scaffoldKey.currentContext,
       builder: (BuildContext context) {
         return alert;
       },

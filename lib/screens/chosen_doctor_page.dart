@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/tile_one.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DoctorPage extends StatefulWidget {
   final String id;
@@ -11,10 +12,9 @@ class DoctorPage extends StatefulWidget {
 }
 
 class _DoctorPageState extends State<DoctorPage> {
-
   void showMyDialog() {
     showDialog(
-      context: context,
+      context: _scaffoldKey.currentContext,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
@@ -27,7 +27,8 @@ class _DoctorPageState extends State<DoctorPage> {
                 _scaffoldKey.currentState.showSnackBar(
                   SnackBar(
                     backgroundColor: Color(0xFF1DB5E4),
-                    content: new Text('Process aborted, Appointment is unregistered'),
+                    content: new Text(
+                        'Process aborted, Appointment is unregistered'),
                     duration: new Duration(seconds: 3),
                   ),
                 );
@@ -40,7 +41,8 @@ class _DoctorPageState extends State<DoctorPage> {
                 _scaffoldKey.currentState.showSnackBar(
                   SnackBar(
                     backgroundColor: Color(0xFF1DB5E4),
-                    content: new Text('Process confirmed, Appointment is registered successfully'),
+                    content: new Text(
+                        'Process confirmed, Appointment is registered successfully'),
                     duration: new Duration(seconds: 3),
                   ),
                 );
@@ -52,24 +54,59 @@ class _DoctorPageState extends State<DoctorPage> {
       },
     );
   }
-  var data = {
-    'index': '1',
-    'image': 'images/3.jpg',
-    'title': 'Dr. Emily Wilson',
-    'rating': '5.0',
-    'experience': '2',
-    'subtitle': 'Physician',
-    'address': 'Cairo',
-    'price': '150',
-  };
+
+  final _auth = FirebaseAuth.instance;
+  String uid;
+
+  @override
+  void initState() {
+    super.initState();
+    String getData() {
+      final User user = _auth.currentUser;
+      final String uid = user.uid;
+      return uid;
+    }
+
+    uid = getData();
+
+    Future<Map> getDoc() async {
+      var snapshot = await FirebaseFirestore.instance
+          .collection('patients')
+          .doc(uid)
+          .get();
+      return snapshot.data();
+    }
+    getDoc().then((e) {
+      email = e['email'];
+      fullname = e['full_name'];
+      phonenumber = e['phone_number'];
+      gender = e['gender'];
+    });
+  }
+
+  String getData() {
+    final User user = _auth.currentUser;
+    final String uid = user.uid;
+    return uid;
+  }
+
+  String gender;
+  String email;
+  String fullname;
+  String phonenumber;
+
+
+
   CollectionReference users = FirebaseFirestore.instance.collection('doctors');
-  List itemsList = ['(Tuesday, 30, july 2021) from 9am to 11am', '(Tuesday, 30, july 2021) from 11am to 2pm'];
+  List itemsList = [
+    '(Tuesday, 30, july 2021) from 9am to 11am',
+    '(Tuesday, 30, july 2021) from 11am to 2pm'
+  ];
   String selectedCategory;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder(
         stream: users.snapshots(),
         builder: (context, snapshot) {
@@ -145,7 +182,8 @@ class _DoctorPageState extends State<DoctorPage> {
                             }).toList(),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+                            padding:
+                                const EdgeInsets.only(left: 20.0, top: 20.0),
                             child: Row(
                               children: <Widget>[
                                 Text(
@@ -183,7 +221,8 @@ class _DoctorPageState extends State<DoctorPage> {
                                     width: double.infinity,
                                     padding: EdgeInsets.all(20.0),
                                     decoration: BoxDecoration(
-                                        color: Color(0xFF54d1f7).withOpacity(0.1),
+                                        color:
+                                            Color(0xFF54d1f7).withOpacity(0.1),
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
                                     child: Text(
@@ -218,7 +257,8 @@ class _DoctorPageState extends State<DoctorPage> {
                                         value: items,
                                         child: Text(
                                           items,
-                                          textAlign: TextAlign.center, // no impact
+                                          textAlign:
+                                              TextAlign.center, // no impact
                                           style: TextStyle(
                                             color: Colors.black54,
                                             fontSize: 12,
@@ -247,8 +287,41 @@ class _DoctorPageState extends State<DoctorPage> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               showMyDialog();
+                              uid = getData();
+                              if (uid != null) {
+                                users
+                                    .doc(widget.id)
+                                    .collection('patients')
+                                    .doc(uid)
+                                    .set({
+                                  'patientInformation':{
+                                    'fullName': fullname,
+                                    'phoneNumber': phonenumber,
+                                    'email': email,
+                                    'gender': gender,
+                                    'id': _auth.currentUser.uid,
+                                    'address': 'Cairo',
+                                    'emergencyFullName': '',
+                                    'emergencyPhoneNumber': '',
+                                    'relation': '',
+                                    'createdAt': DateTime.now(),
+                                  }
+                                  ,
+                                  'medicalData' : {
+                                    'symptoms': '',
+                                    'diagnosis': '',
+                                  },
+                                  'prescriptions': {
+                                    'dosages': '',
+                                    'medications': '',
+                                  }
+                                    }, SetOptions(merge: true))
+                                    .then((value) => print("User Added"))
+                                    .catchError((error) =>
+                                        print("Failed to add user: $error"));
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xFF54d1f7),
