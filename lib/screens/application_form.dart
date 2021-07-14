@@ -37,8 +37,28 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
         key: _scaffoldKey,
         backgroundColor: Color(0xFF1DB5E4),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 20,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Text(
+            'Application Form',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(15, 25, 15, 10),
           child: Form(
@@ -324,7 +344,6 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Text("Cancel"),
       onPressed: () {
         Navigator.of(context).pop();
-
       },
     );
     Widget confirmButton = TextButton(

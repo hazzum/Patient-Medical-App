@@ -226,7 +226,7 @@ class _DoctorPageState extends State<DoctorPage> {
                                         borderRadius:
                                             BorderRadius.circular(10.0)),
                                     child: Text(
-                                        'As a primary care physician, Emily Wilson, MD, provides comprehensive services to patients of all ages, Dr. Wilson offers inclusive family medicine with a particular focus on diabetes care for adults and geriatric medicine',
+                                        'As a primary care physician, MD, provides comprehensive services to patients of all ages, the doctor offers inclusive family medicine with a particular focus on diabetes care for adults and geriatric medicine',
                                         style: TextStyle(fontSize: 16.0))),
                               ),
                             ],

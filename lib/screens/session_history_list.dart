@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     if (value == 'DateTime') {
       setState(() {
         filteredList.sort((a, b) =>
-            a['clinicInfo']['address'].compareTo(b['clinicInfo']['address']));
+            a['createdAt'].toDate().compareTo(b['createdAt'].toDate()));
       });
     }
     if (value == 'Speciality') {
@@ -211,13 +211,17 @@ class _HomePageState extends State<HomePage> {
                                   image: (v['personalInfo']['url']) != null
                                       ? (v['personalInfo']['url'])
                                       : 'Error',
-                                  date: DateTime.utc(
+                                  date: (v['createdAt']) != null
+                                      ? (v['createdAt'].toDate())
+                                      : DateTime.utc(
                                       2021,
                                       new Random().nextInt(12),
                                       new Random().nextInt(30),
                                       new Random().nextInt(24),
                                       30),
-                                  time: DateTime.utc(
+                                  time: (v['createdAt']) != null
+                                      ? (v['createdAt'].toDate())
+                                      : DateTime.utc(
                                       2021,
                                       new Random().nextInt(12),
                                       new Random().nextInt(30),

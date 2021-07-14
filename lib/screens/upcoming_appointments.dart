@@ -79,13 +79,13 @@ class _UpcomingAppointmentsState extends State<UpcomingAppointments> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text('1- Dr. Nina Thomson Session (Tuesday, 25, july 2021) from 11am to 1am',
+                    Text('1- Dr. Professional Session (Tuesday, 25, july 2021) from 11am to 1am',
                     style: TextStyle(color: Colors.white),),
 
                     SizedBox(
                       height: 15,
                     ),
-                    Text('2- Dr. Mahmoud Sallam (Tuesday, 30, july 2021) from 9am to 11am.',
+                    Text('2- Dr. Ahmed Abd-Elaziz (Tuesday, 30, july 2021) from 9am to 11am.',
                       style: TextStyle(color: Colors.white),),
                   ],
                 ),

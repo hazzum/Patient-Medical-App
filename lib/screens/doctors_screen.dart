@@ -36,6 +36,12 @@ class _DoctorScreenState extends State<DoctorScreen> {
             .compareTo(b['personalInfo']['specialty']));
       });
     }
+    if (value == 'Rating' || value == 'Experience') {
+      setState(() {
+        filteredList.sort((a, b) => int.parse(b['clinicInfo']['fees'])
+            .compareTo(int.parse(a['clinicInfo']['fees'])));
+      });
+    }
   }
 
   void initiateSearch(String value) {
@@ -229,8 +235,12 @@ class _DoctorScreenState extends State<DoctorScreen> {
                                   price: (v['clinicInfo']['fees']) != null
                                       ? v['clinicInfo']['fees']
                                       : '101010',
-                                  rating: '5',
-                                  experience: '3',
+                                  rating: int.parse(v['clinicInfo']['fees']) > 250
+                                      ? '5'
+                                      : '3',
+                                  experience: int.parse(v['clinicInfo']['fees']) > 250
+                                      ? '7'
+                                      : '4',
                                   address: (v['clinicInfo']['address']) != null
                                       ? v['clinicInfo']['address']
                                       : "Error",
