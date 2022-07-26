@@ -33,18 +33,28 @@ class SessionTile extends StatelessWidget {
         Navigator.pushNamed(context, '/ninth');
       },
       child: Hero(
-        tag: 'session'+this.title,
+        tag: 'session' + this.title,
         child: Container(
           margin: EdgeInsets.only(left: 15.0, bottom: 5.0, right: 15.0),
           padding:
               EdgeInsets.only(left: 5.0, right: 15.0, top: 5.0, bottom: 5.0),
           decoration: BoxDecoration(
-              color: color
-                  ? Color(0xFF1DB5E4).withAlpha(40)
-                  : Colors.transparent,
+              color:
+                  color ? Color(0xFF1DB5E4).withAlpha(40) : Colors.transparent,
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
             children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Image.network(
+                  (image == "")
+                      ? 'https://as2.ftcdn.net/v2/jpg/04/26/99/95/1000_F_426999565_AJdlhzyu9f3kL5T6cXlZJfkg4AoCDc6E.jpg'
+                      : image,
+                  height: 100.0,
+                  width: 100.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0),
                 child: Column(

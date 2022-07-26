@@ -229,9 +229,9 @@ class _DoctorScreenState extends State<DoctorScreen> {
                                       (v['personalInfo']['specialty']) != null
                                           ? (v['personalInfo']['specialty'])
                                           : 'Error',
-                                  image: (v['personalInfo']['url']) != null
+                                  image: (v['personalInfo']['url']) != ""
                                       ? (v['personalInfo']['url'])
-                                      : 'Error',
+                                      : "",
                                   price: (v['clinicInfo']['fees']) != null
                                       ? v['clinicInfo']['fees']
                                       : '101010',
