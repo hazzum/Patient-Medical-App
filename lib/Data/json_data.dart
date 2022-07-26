@@ -5,16 +5,16 @@ class SearchService {
   getData() {
     return FirebaseFirestore.instance
         .collection('doctors')
-        .get().then((QuerySnapshot doc) {
+        .get()
+        .then((QuerySnapshot doc) {
       for (int i = 0; i < doc.docs.length; ++i) {
         doctorsJsonList.add(doc.docs[i].data());
       }
     });
   }
 
-  returnData(){
+  returnData() {
     getData();
     return doctorsJsonList;
   }
-
 }

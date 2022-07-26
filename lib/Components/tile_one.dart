@@ -47,7 +47,7 @@ class TileOne extends StatelessWidget {
         );
       },
       child: Hero(
-        tag: 'doctor',
+        tag: 'doctor'+this.title,
         child: Container(
           margin: EdgeInsets.only(left: 15.0, bottom: 5.0, right: 15.0),
           padding:
@@ -58,17 +58,6 @@ class TileOne extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0)),
           child: Row(
             children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Image.network(
-                  image == 'Error'
-                      ? 'https://aawafi.com/uploads/partners/profile/doctor.jpg'
-                      : image,
-                  height: 100.0,
-                  width: 100.0,
-                  fit: BoxFit.cover,
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.only(left: 12.0),
                 child: Column(

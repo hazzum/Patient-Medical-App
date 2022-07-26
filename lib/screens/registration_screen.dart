@@ -49,7 +49,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               runSpacing: 15,
               children: <Widget>[
                 Hero(
-                  tag: 'logo',
+                  tag: 'registration',
                   child: Container(
                     height: 80.0,
                     child: Image.asset('images/imsLogo.png'),
